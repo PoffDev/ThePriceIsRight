@@ -1,18 +1,21 @@
 var slack = {
-	client_secret: 'YOUR CLIENT SECRET',
+	client_id: '',
+	client_secret: '',
 	redirect_uri: 'http://localhost/game.html',
 
-	team: 'YOUR TEAM ID',
-	channel: 'YOUR CHANNEL ID',
+	team: 'T279KBDGU',
+	channel: 'C32GH70T1',
 	messageId: 0,
 	users: {},
 	channels: {},
+	identity: {},
 
 	start: function() {
 		if (!this.client_id) return;
 
-		oauth.login().done(function(response) {
+		slack.api.login().done(function(response) {
 			slack.parse(response);
+			slack.ready(); // figure out who the heck i am!
 			connection.start(response.url, slack.event);
 		});
 	},
@@ -41,6 +44,12 @@ var slack = {
 		}
 
 		console.log(event);
+
+		switch(event.type) {
+			case 'message':
+				// connection.start();
+			break;
+		}
 	},
 
 	send: function(message) {
@@ -52,7 +61,14 @@ var slack = {
 		});
 
 		connection.send(msg);
+	},
+
+	ready: function() {
+		var channel = slack.channels[slack.channel];
+		slack.api.join(channel.name).done(function() {
+			slack.api.post('JoinQueue').done(function(response) {
+				slack.identity = slack.users[response.message.user];
+			});
+		});
 	}
 };
-
-slack.start();
