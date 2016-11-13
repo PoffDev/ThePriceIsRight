@@ -14,24 +14,21 @@ var slack = {
 		if (!this.client_id) return;
 
 		slack.api.login().done(function(response) {
-			slack.parse(response);
-			slack.ready(); // figure out who the heck i am!
+			// update channels
+			var channels = response.channels;
+			for (var i = channels.length - 1; i >= 0; i--) {
+				slack.channels[channels[i].id] = channels[i];
+			};
+
+			// update users
+			var users = response.users;
+			for (var i = users.length - 1; i >= 0; i--) {
+				slack.users[users[i].id] = users[i];
+			};
+
+			slack.queue.ready(); // figure out who the heck i am!
 			connection.start(response.url, slack.event);
 		});
-	},
-
-	parse: function(response) {
-		// update channels
-		var channels = response.channels;
-		for (var i = channels.length - 1; i >= 0; i--) {
-			this.channels[channels[i].id] = channels[i];
-		};
-
-		// update users
-		var users = response.users;
-		for (var i = users.length - 1; i >= 0; i--) {
-			this.users[users[i].id] = users[i];
-		};
 	},
 
 	event: function(event) {
@@ -47,7 +44,7 @@ var slack = {
 
 		switch(event.type) {
 			case 'message':
-				// connection.start();
+				slack.queue.event(event);
 			break;
 		}
 	},
@@ -61,14 +58,5 @@ var slack = {
 		});
 
 		connection.send(msg);
-	},
-
-	ready: function() {
-		var channel = slack.channels[slack.channel];
-		slack.api.join(channel.name).done(function() {
-			slack.api.post('JoinQueue').done(function(response) {
-				slack.identity = slack.users[response.message.user];
-			});
-		});
 	}
 };

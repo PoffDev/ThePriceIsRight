@@ -51,14 +51,14 @@ slack.api = {
 
 	},
 
-	post: function(message) {
+	post: function(message, channel) {
 		if (!message) return;
 
 		var url = 'https://slack.com/api/chat.postMessage';
 
 		return slack.api.request(url, {
 			token: slack.api.access_token,
-			channel: slack.channel,
+			channel: channel,
 			text: message,
 			as_user: true
 		});
@@ -68,6 +68,17 @@ slack.api = {
 		if (!channel) return;
 
 		var url = 'https://slack.com/api/channels.join';
+
+		return slack.api.request(url, {
+			token: slack.api.access_token,
+			name: channel
+		});
+	},
+
+	part: function(channel) {
+		if (!channel) return;
+
+		var url = 'https://slack.com/api/channels.leave';
 
 		return slack.api.request(url, {
 			token: slack.api.access_token,
