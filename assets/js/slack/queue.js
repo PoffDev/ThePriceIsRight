@@ -33,12 +33,6 @@ slack.queue = {
 					// note which users are in the game
 					// message.users
 				break;
-
-				case 'action':
-					// check which user made the action
-					// message.user
-					// bid, etc.
-				break;
 			}
 
 			return;
