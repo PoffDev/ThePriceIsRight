@@ -1,5 +1,8 @@
-var connection = {
+var slack = slack || {};
+
+slack.connection = {
 	ws: undefined,
+	
 	start: function(url, callback) {
 		this.ws = new WebSocket(url);
 
@@ -8,6 +11,7 @@ var connection = {
 			callback(JSON.parse(event.data));
 		}
 	},
+
 	send: function(message) {
 		this.ws.send(message);
 	}

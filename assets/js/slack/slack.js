@@ -27,7 +27,7 @@ var slack = {
 			};
 
 			slack.queue.ready(); // figure out who the heck i am!
-			connection.start(response.url, slack.event);
+			slack.connection.start(response.url, slack.event);
 		});
 	},
 
@@ -57,6 +57,6 @@ var slack = {
 			text: message
 		});
 
-		connection.send(msg);
+		slack.connection.send(msg);
 	}
 };
