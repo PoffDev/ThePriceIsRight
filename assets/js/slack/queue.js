@@ -25,6 +25,9 @@ slack.queue = {
 		// discontinue if we're not matchmaking
 		if (!slack.queue.search) return;
 
+		// discontinue if event didn't come from a user or is a reply
+		if (!event.user || event.reply_to) return;
+
 		var user = event.user;
 
 		if (user.is_bot && user.name == slack.queue.master) {
@@ -44,7 +47,7 @@ slack.queue = {
 		
 		// another user joining queue
 		if (event.text == 'JoinQueue') {
-			slack.queue.push(user.id);
+			slack.queue.users.push(user.id);
 
 			if (slack.queue.length >= 4) {
 				// game has enough players in queue
