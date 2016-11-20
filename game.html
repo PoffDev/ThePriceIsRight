@@ -1,11 +1,46 @@
-<script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-  
-<script type="text/javascript" src="assets/js/jquery.qs.js"></script>
-<script type="text/javascript" src="assets/js/slack/slack.js"></script>
-<script type="text/javascript" src="assets/js/slack/connection.js"></script>
-<script type="text/javascript" src="assets/js/slack/api.js"></script>
-<script type="text/javascript" src="assets/js/slack/queue.js"></script>
-<script type="text/javascript" src="assets/js/app.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+	<script
+	  src="https://code.jquery.com/jquery-3.1.1.min.js"
+	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	  crossorigin="anonymous"></script>
+	  
+	<script type="text/javascript" src="assets/js/jquery.qs.js"></script>
+	<script type="text/javascript" src="assets/js/slack/slack.js"></script>
+	<script type="text/javascript" src="assets/js/slack/connection.js"></script>
+	<script type="text/javascript" src="assets/js/slack/api.js"></script>
+	<script type="text/javascript" src="assets/js/slack/queue.js"></script>
+	<script type="text/javascript" src="assets/js/game/game.js"></script>
+	<script type="text/javascript" src="assets/js/app.js"></script>
+
+	<style type="text/css">
+		#contestant-view,
+		#spin-view,
+		#showcase-view {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<!-- auidence view -->
+		<div class="row" id="audience-view">
+
+		</div>
+
+		<!-- contestant view -->
+		<div class="row" id="contestant-view"></div>
+
+		<!-- spin view -->
+		<div class="row" id="spin-view"></div>
+
+		<!-- showcase view -->
+		<div class="row" id="showcase-view"></div>
+	</div>
+</body>
+
+
+
+</html>
