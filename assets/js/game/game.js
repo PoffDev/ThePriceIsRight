@@ -15,8 +15,12 @@ var game = {
 				type: 'audience.yell',
 				user: slack.identity.id,
 				message: message
-			}));
+			});
 		},
+
+		members: function() {
+			return slack.api.channel.info(slack.channel);
+		}
 	},
 
 	contestant: {
@@ -26,7 +30,7 @@ var game = {
 				type: 'contestant.bid',
 				user: slack.identity.id,
 				message: amount
-			}));
+			});
 		},
 	},
 
@@ -49,7 +53,7 @@ var game = {
 				type: 'wheel.spin',
 				user: slack.identity.id,
 				message: result
-			}));
+			});
 
 			return result;
 		}
@@ -61,7 +65,7 @@ var game = {
 			game.send({
 				type: 'showcase.pass',
 				user: slack.identity.id
-			}));
+			});
 		},
 
 		bid: function(amount) {
@@ -70,7 +74,7 @@ var game = {
 				type: 'showcase.bid',
 				user: slack.identity.id,
 				message: amount
-			}));
+			});
 		}
 	},
 

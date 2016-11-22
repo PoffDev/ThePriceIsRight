@@ -86,6 +86,19 @@ slack.api = {
 		});
 	},
 
+	channel: {
+		info: function(channel) {
+			if (!channel) return;
+
+			var url = 'https://slack.com/api/channels.info';
+
+			return slack.api.request(url, {
+				token: slack.api.access_token,
+				channel: channel
+			});
+		}
+	},
+
 	request: function(url, params) {
 		var request = {
 			url: url + '?' + $.param(params),
