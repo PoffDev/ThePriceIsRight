@@ -1,6 +1,6 @@
 var slack = {
-	client_id: '',
-    client_secret: '',
+	client_id: '75325387572.103198794929',
+	client_secret: 'baf2d9e0bb767f588feebcf2dd6dab48',
 	redirect_uri: 'http://localhost/game.html',
 
 	team: 'T279KBDGU',
@@ -26,15 +26,12 @@ var slack = {
 				slack.users[users[i].id] = users[i];
 			};
 
-			slack.queue.ready(); // figure out who the heck i am!
+			game.queue.ready(); // figure out who the heck i am!
 			slack.connection.start(response.url, slack.event);
 		});
 	},
 
 	event: function(event) {
-		// ignore events that come from me
-		if (event.user === slack.identity.id) return;
-
 		if (event.user) {
 			event.user = slack.users[event.user];
 		}
@@ -47,8 +44,8 @@ var slack = {
 
 		switch(event.type) {
 			case 'message':
-				slack.queue.event(event);
 				game.event(event);
+				game.queue.event(event);
 			break;
 		}
 	},

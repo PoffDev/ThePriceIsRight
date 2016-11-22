@@ -17,6 +17,10 @@ var game = {
 				message: message
 			});
 		},
+
+		members: function() {
+			return slack.api.channel.info(slack.channel);
+		}
 	},
 
 	contestant: {
