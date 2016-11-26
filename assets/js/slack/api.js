@@ -64,6 +64,19 @@ slack.api = {
 		});
 	},
 
+  delete: function(ts, channel) {
+    if (!ts) return;
+
+    var url = 'https://slack.com/api/chat.delete';
+
+    return slack.api.request(url, {
+      token: slack.api.access_token,
+      ts: ts,
+      channel: channel,
+      as_user: true
+    });
+  },
+
 	join: function(channel) {
 		if (!channel) return;
 
@@ -107,6 +120,25 @@ slack.api = {
 
 		return $.ajax(request);
 	},
+
+  identify: function() {
+    var identity = localStorage.getItem('slack_identity');
+
+    if (identity) {
+      slack.identity = JSON.parse(identity);
+      return;
+    }
+
+    var channel = slack.channels[slack.channel];
+    slack.api.join(channel.name).then(function() {
+      slack.api.post('Automated Message', channel.id).done(function(response) {
+        slack.api.delete(response.ts, channel.id);
+
+        slack.identity = slack.users[response.message.user];
+        localStorage.setItem('slack_identity', JSON.stringify(slack.identity));
+      });
+    });
+  },
 
 	login: function() {
 		var code = slack.api.code();

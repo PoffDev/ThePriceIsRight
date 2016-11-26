@@ -5,12 +5,11 @@ var slack = {
 
 	team: 'T279KBDGU',
 	channel: 'C32GH70T1',
-	messageId: 0,
 	users: {},
 	channels: {},
 	identity: {},
 
-	start: function() {
+	start: function(cb) {
 		if (!this.client_id) return;
 
 		slack.api.login().done(function(response) {
@@ -26,8 +25,10 @@ var slack = {
 				slack.users[users[i].id] = users[i];
 			};
 
-			game.queue.ready(); // figure out who the heck i am!
+			slack.api.identify(); // figure out who the heck i am!
 			slack.connection.start(response.url, slack.event);
+
+			if (cb) cb();
 		});
 	},
 
@@ -42,22 +43,34 @@ var slack = {
 
 		console.log('slack', event);
 
+		// ignore replies
+		if (event.reply_to || event.reply_to === null) return;
+
 		switch(event.type) {
 			case 'message':
-				game.event(event);
-				game.queue.event(event);
+				if (typeof game != 'undefined') {
+					game.event(event);
+				}
+
+				if (typeof admin != 'undefined') {
+					admin.event(event);
+				}
 			break;
 		}
 	},
 
 	send: function(message) {
 		var msg = JSON.stringify({
-			id: ++slack.messageId,
+			//  id: slack.random(),
 			type: 'message',
 			channel: slack.channel,
 			text: message
 		});
 
 		slack.connection.send(msg);
+	},
+
+	random: function() {
+		return Math.floor((Math.random() * Date.now()) + 1);
 	}
 };
