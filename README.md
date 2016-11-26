@@ -15,3 +15,5 @@
 * [x] Must use Bootstrap or Alternative CSS Framework
 * [ ] Must be Deployed (Heroku)
 * [ ] Must have User Input Validation 
+* [x] Utilize Local Data Storage (Consider this basically a requirement; localStorage / sessionStorage)
+  * Using LocalStorage to maintain Slack Access Token, Slack Bot Access Token and Slack Identity
