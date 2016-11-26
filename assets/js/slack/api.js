@@ -3,7 +3,8 @@ var slack = slack || {};
 slack.api = {
 	code: function() {
 		// grab code query param out of uri
-		var query = $.qs(location.search) || {};
+		var query = $.qs.parse(location.search) || {};
+    $.qs.reset(); // remove query params
 		return query.code;
 	},
 
