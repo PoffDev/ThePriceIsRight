@@ -20,5 +20,10 @@ var app = {
         view.append(player);
       }
     });
+	},
+
+
+	event: function(event) {
+		console.log('app', event);
 	}
 }

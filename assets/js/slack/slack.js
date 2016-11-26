@@ -55,6 +55,10 @@ var slack = {
 				if (typeof admin != 'undefined') {
 					admin.event(event);
 				}
+
+				if (typeof app != 'undefined') {
+					app.event(event);
+				}
 			break;
 		}
 	},
