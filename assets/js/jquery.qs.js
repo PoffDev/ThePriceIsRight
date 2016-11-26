@@ -55,9 +55,18 @@
     return params;
   };
 
+  // Takes no parameters and removes all Query params from the URL
+  // Returns nothing
+  function reset() {
+    if (history) {
+      history.pushState(null, '', location.href.split('?')[0]);
+    }
+  }
+
   // Public interface.
-  $.qs = function(param) {
-    return parse(param);
+  $.qs = {
+    parse: parse,
+    reset: reset
   };
 
 })(jQuery);
