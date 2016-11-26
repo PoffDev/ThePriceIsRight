@@ -32,6 +32,43 @@ var game = {
 				message: amount
 			});
 		},
+
+		add: function(user) {
+			game.send({
+				type: 'contestant.add',
+				user: user
+			});
+		},
+
+		list: function(list) {
+			game.send({
+				type: 'contestant.list',
+				user: list
+			})
+		},
+
+		won: function(user, bid) {
+			game.send({
+				type: 'contestant.won',
+				user: user,
+				message: bid
+			});
+		},
+
+		turn: function(user, message) {
+			game.send({
+				type: 'contestant.turn',
+				user: user,
+				message: message || ''
+			});
+		},
+
+		product: function(product) {
+			game.send({
+				type: 'contestant.product',
+				message: product
+			});
+		}
 	},
 
 	wheel: {
