@@ -4,7 +4,7 @@ var slack = {
 	redirect_uri: 'http://localhost/game.html',
 
 	team: 'T279KBDGU',
-	channel: 'C32GH70T1',
+	channel: 'C37CH1CSY',
 	users: {},
 	channels: {},
 	identity: {},
