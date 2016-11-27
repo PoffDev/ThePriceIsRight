@@ -2,48 +2,61 @@
 <html>
 <head>
 
-  <script
-    src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
+  <script src="assets/js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="assets/js/jquery.qs.js"></script>
+  <script type="text/javascript" src="assets/js/slack/slack.js"></script>
+  <script type="text/javascript" src="assets/js/slack/connection.js"></script>
+  <script type="text/javascript" src="assets/js/slack/api.js"></script>
 
-    <script type="text/javascript" src="assets/js/jquery.qs.js"></script>
-    <script type="text/javascript" src="assets/js/slack/slack.js"></script>
-    <script type="text/javascript" src="assets/js/slack/connection.js"></script>
-    <script type="text/javascript" src="assets/js/slack/api.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- jquery slick: carosel -->
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
 
-    <!-- jquery slick: carosel -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+  <style type="text/css">
+    body {
+      background: #141821 url('assets/img/bg.jpg') top center no-repeat;
+      color: #fff;
+    }
+
+    .carosel {
+      width: 960px;
+      margin-top: 30px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
+
+  <div class="carosel center-block">
+    <div><img src="assets/img/slide_drew.png"></div>
+    <div><img src="assets/img/slide_youtube.png"></div>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.carosel').slick({
+        autoplay: true,
+        autoplaySpeed: 3000,
+        arrows: false
+      });
+
+      $('.carosel').on('click', function() {
+        slack.start(function() {
+          window.location.href = 'game.html';
+        });
+      });
+    });
+  </script>
+
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <div class="carosel">
-          <div><img src="assets/img/slide_drew.png"></div>
-          <div><img src="assets/img/slide_youtube.png"></div>
-        </div>
-        <script type="text/javascript">
-          $(document).ready(function(){
-            $('.carosel').slick({
-              autoplay: true,
-              autoplaySpeed: 3000,
-              arrows: false
-            });
-
-            $('.carosel').on('click', function() {
-              slack.start(function() {
-                window.location.href = 'game.html';
-              });
-            });
-          });
-        </script>
+      
       </div>
     </div>
   </div>

@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script
-	  src="https://code.jquery.com/jquery-3.1.1.min.js"
-	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-	  crossorigin="anonymous"></script>
-	  
+
+	<script src="assets/js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="assets/js/jquery.qs.js"></script>
 	<script type="text/javascript" src="assets/js/slack/slack.js"></script>
 	<script type="text/javascript" src="assets/js/slack/connection.js"></script>
@@ -13,16 +10,89 @@
 	<script type="text/javascript" src="assets/js/game/game.js"></script>
 	<script type="text/javascript" src="assets/js/app.js"></script>
 
-		<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
 	<style type="text/css">
-		#audience-view {
-			background: url('assets/img/audience-view.jpg') no-repeat;
-			height: 683px;
+		body {
+      background: #141821 url('assets/img/bg.jpg') top center no-repeat;
+      color: #fff;
+    }
+
+    .container {
+  		min-width: 1055px !important;
 		}
 
-		#contestant-view,
+    @media screen and (min-width: 1200px) {
+			.container {
+			    width: 1055px;
+			}
+		}
+
+		@media screen and (min-width: 960px) {
+			#contestant-bids > div:nth-child(1) {
+				margin-left: 55px;
+			}
+		}
+
+		#audience {
+			background: url('assets/img/audience-view.png') top center no-repeat;
+			height: 683px;
+			margin-top: 30px;
+		}
+
+		.audience {}
+
+		#audience-view {
+			padding-top: 55px;
+			height: 300px;
+	    overflow-y: hidden;
+	    margin-left: -5px;
+		}
+
+		#contestant-view {
+			margin-top: 10px;
+		}
+
+		#contestant-bids {
+			margin-top: 7px;
+		}
+
+		#contestant-bids > div {
+			display: inline-block;
+			font-size: 70px;
+			width: 175px;
+			text-align: right;
+		}
+
+		#contestant-bids > div:nth-child(1) {
+			margin-left: 100px;
+		}
+
+		#contestant-bids > div:nth-child(2) {
+			margin-left: 45px;
+		}
+
+		#contestant-bids > div:nth-child(3),
+		#contestant-bids > div:nth-child(4) {
+			margin-left: 40px;
+		}
+
+		#product-display {
+			width: 330px;
+    	height: 173px;
+	    margin: 0 auto;
+	    
+		}
+
+		#product-display > div {
+	    background-color: #fff;
+	    width: 355px;
+	    height: 134px;
+	    margin-top: 39px;
+	    margin-left: -25px;
+		}
+
 		#spin-view,
 		#showcase-view {
 			display: none;
@@ -32,19 +102,44 @@
 
 <body>
 	<div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<h1>Price is Right!</h1>
+
+		<div id="audience">
+			<!-- product display -->
+			<div class="row" id="product-display">
+				<div class="col-xs-12 col-sm-12">
+				</div>
+			</div>
+
+			<!-- auidence view -->
+			<div class="row" id="audience-view">
+			</div>
+
+			<!-- contestant view -->
+			<div class="row" id="contestant-view">
+				<!-- intentional offset -->
+				<div class="col-xs-2 col-sm-2"></div>
+				<!-- /end intentional offset -->
+			</div>
+
+			<div class="row" id="contestant-bids">
 			</div>
 		</div>
 
-		<!-- auidence view -->
-		<div class="row" id="audience-view">
+		<div class="row" id="contestant-controls">
+			<div class="col-xs-6" id="contestant-action">
+				<h2>Contestants Row Controls</h2>
+				<div class="input-group">
+		      <input type="text" class="form-control" placeholder="1.00">
+		      <span class="input-group-btn">
+		        <button class="btn btn-primary" type="button">Bid!</button>
+		      </span>
+		    </div><!-- /input-group -->
+	    </div>
 
+	    <div class="col-xs-6">
+	    	<h2>Audience Chat</h2>
+	    </div>
 		</div>
-
-		<!-- contestant view -->
-		<div class="row" id="contestant-view"></div>
 
 		<!-- spin view -->
 		<div class="row" id="spin-view"></div>

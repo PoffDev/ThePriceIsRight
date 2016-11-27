@@ -70,6 +70,7 @@ var contestant = {
         image: product.image
       });
 
+      contestant.turn = 0;
       var id = contestant.list[contestant.turn].id;
       game.contestant.turn(id);
     });

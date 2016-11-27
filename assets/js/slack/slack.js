@@ -48,10 +48,6 @@ var slack = {
 
 		switch(event.type) {
 			case 'message':
-				if (typeof game != 'undefined') {
-					game.event(event);
-				}
-
 				if (typeof admin != 'undefined') {
 					admin.event(event);
 				}

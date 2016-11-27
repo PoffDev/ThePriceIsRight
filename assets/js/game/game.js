@@ -1,9 +1,4 @@
 var game = {
-	event: function(event) {
-		// event occured
-		console.log('game', event);
-	},
-
 	chat: function(message) {
 		slack.api.post(message, slack.channel);
 	},
@@ -42,7 +37,7 @@ var game = {
 
 		list: function(list) {
 			game.send({
-				type: 'contestant.list',
+				type: 'contestant.reset',
 				user: list
 			})
 		},
@@ -66,7 +61,7 @@ var game = {
 		product: function(product) {
 			game.send({
 				type: 'contestant.product',
-				message: product
+				product: product
 			});
 		}
 	},

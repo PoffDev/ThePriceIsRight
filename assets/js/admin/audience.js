@@ -1,7 +1,7 @@
 var audience = {
   add: function(user) {
     var view = $('#audience-view');
-    var player = $('<div class="col-xs-12 col-sm-2 player audience">');
+    var player = $('<div class="col-xs-1 col-sm-2 player audience">');
 
     player.html('<img src="'+ user.profile.image_32+'"> '+ user.name);
     player.attr('data-id', user.id);
