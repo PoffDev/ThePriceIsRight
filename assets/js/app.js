@@ -107,6 +107,7 @@ var contestant = {
 		var players = view.find('.contestant');
 		players.remove();
 		$('.bid').remove();
+		$('#product-display > div').empty();
 	},
 
 	product: function(product) {
