@@ -17,3 +17,9 @@
 * [ ] Must have User Input Validation 
 * [x] Utilize Local Data Storage (Consider this basically a requirement; localStorage / sessionStorage)
   * Using LocalStorage to maintain Slack Access Token, Slack Bot Access Token and Slack Identity
+  
+  
+### Future Improvements
+* [ ] Remove need for moderator panel by adding logic into clients
+* [ ] Add more Price is Right games
+* [ ] Add Showcase Showdown
