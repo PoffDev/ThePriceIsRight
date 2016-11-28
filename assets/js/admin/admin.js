@@ -21,6 +21,7 @@ var admin = {
     if (event.subtype) {
       switch (event.subtype) {
         case 'channel_join':
+          position.push(event.user);
           audience.add(event.user);
         break;
 
@@ -28,7 +29,6 @@ var admin = {
           audience.remove(event.user);
         break;
       }
-
       return;
     }
 

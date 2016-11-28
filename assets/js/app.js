@@ -6,56 +6,55 @@ $(document).ready(function(){
 
 var app = {
 	start: function() {
-		game.audience.members().done(function(response) {
-      var members = response.channel.members;
-      for(var i = 0; i < members.length; i++) {
-        var user = slack.users[members[i]];
-        audience.add(user);
-      }
-    });
+	    game.audience.members().done(function(response) {
+            var members = response.channel.members;
+            for(var i = 0; i < members.length; i++) {
+                var user = slack.users[members[i]];
+                audience.add(user);
+            }
+        });
 	},
-
 	event: function(event) {
 		console.log('app', event);
 
 		if (event.subtype) {
-      switch (event.subtype) {
-        case 'channel_join':
-          audience.add(event.user);
-        break;
+          switch (event.subtype) {
+            case 'channel_join':
+              audience.add(event.user);
+            break;
 
-        case 'channel_leave':
-          audience.remove(event.user);
-        break;
-      }
+            case 'channel_leave':
+              audience.remove(event.user);
+            break;
+          }
+          return;
+        }
 
-      return;
-    }
+        if (event.type == 'message') {
+            var message = JSON.parse(event.text);
+            if (message.user) {
+      	        message.user = slack.users[message.user];
+            }
 
-    if (event.type == 'message') {
-      var message = JSON.parse(event.text);
-      if (message.user) {
-      	message.user = slack.users[message.user];
-      }
+            switch(message.type) {
+                case 'contestant.bid':
+                    contestant.bid(message.user, message.message);
+                break;
 
-      switch(message.type) {
-        case 'contestant.bid':
-          contestant.bid(message.user, message.message);
-        break;
+                case 'contestant.add':
+                    contestant.list.push(message.user);
+                    contestant.add(message.user);
+                break;
 
-        case 'contestant.add':
-        	contestant.add(message.user);
-        break;
+                case 'contestant.reset':
+                    contestant.reset(message.user);
+                break;
 
-        case 'contestant.reset':
-        	contestant.reset(message.user);
-        break;
-
-        case 'contestant.product':
-        	contestant.product(message.product);
-        break;
-      }
-    }
+                case 'contestant.product':
+                    contestant.product(message.product);
+                break;
+            }
+        }
 	}
 };
 
@@ -66,18 +65,15 @@ var app = {
 var audience = {
 	add: function(user) {
 		var view = $('#audience-view');
-    var player = $('<div class="col-xs-1 col-sm-1 player audience">');
-
-    player.html('<img src="'+ user.profile.image_48 +'">');
-    player.attr('data-id', user.id);
-
-    view.append(player);
+        var player = $('<div class="col-xs-1 col-sm-1 player audience">');
+        player.html('<img src="'+ user.profile.image_48 +'">');
+        player.attr('data-id', user.id);
+        view.append(player);
 	},
-
-	remove: function(user) {
-    var view = $('#audience-view');
-    view.find('div[data-id="'+ user.id +'"]').remove();
-  },
+    remove: function(user) {
+        var view = $('#audience-view');
+        view.find('div[data-id="'+ user.id +'"]').remove();
+    }
 };
 
 /**
@@ -90,17 +86,16 @@ var contestant = {
 		var bid = $('<div class="bid">'+ amount +'</div>');
 		view.append(bid);
 	},
-
 	add: function(user) {
-		var view = $('#contestant-view');
-		var player = $('<div class="col-xs-2 col-sm-2 player contestant">');
+	    if (contestant.list.length <= 4) {
+            var view = $('#contestant-list');
+            var player = $('<li id="contestant'+ contestant.list.length +'" class="col-xs-2 col-sm-2 player contestant">');
 
-    player.html('<img src="'+ user.profile.image_72 +'"> ');
-    player.attr('data-id', user.id);
-
-    view.append(player);
+            player.html('<img src="'+ user.profile.image_72 +'"> ');
+            player.attr('data-id', user.id);
+            view.append(player);
+        }
 	},
-
 	// reset all contestants
 	reset: function(users) {
 		var view = $('#contestant-view');
@@ -108,10 +103,23 @@ var contestant = {
 		players.remove();
 		$('.bid').remove();
 		$('#product-display > div').empty();
+		$('.modal-title').empty();
+		$('.modal-body').empty();
 	},
-
 	product: function(product) {
 		var view = $('#product-display > div');
-		view.append(JSON.stringify(product));
-	}
+		var modalTitle = $('.modal-title');
+		var modalBody = $('.modal-body');
+		var image = product.image.replace(/[<>]/g,"");
+        var modal = {
+            title: product.name,
+            description: product.longDescription,
+            image: '<img height="100%" width="100%" src='+ image +' data-toggle="modal" data-target="#productModal">'
+        };
+		view.append(modal.image);
+		modalTitle.append(modal.title);
+		modalBody.append(modal.image + '<br>' + modal.body);
+
+	},
+    list: []
 };

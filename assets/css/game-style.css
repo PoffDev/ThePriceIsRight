@@ -1,0 +1,138 @@
+
+
+body {
+    background: #141821 url('../img/bg.jpg') top center no-repeat;
+    color: #fff;
+}
+
+.container {
+    min-width: 1055px !important;
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        width: 1055px;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    #contestant-bids > div:nth-child(1) {
+        margin-left: 55px;
+    }
+}
+
+#audience {
+    background: url('../img/audience-view.png') top center no-repeat;
+    height: 683px;
+    margin-top: 30px;
+}
+
+.modal-title {
+    color: #000;
+}
+
+#audience-view {
+    padding-top: 55px;
+    height: 300px;
+    overflow-y: hidden;
+    margin-left: -5px;
+}
+
+#contestant-view {
+    margin-top: 10px;
+}
+
+#contestant-bids {
+    margin-top: 7px;
+}
+
+#contestant-bids > div {
+    display: inline-block;
+    font-size: 70px;
+    width: 175px;
+    text-align: right;
+}
+
+#contestant-bids > div:nth-child(1) {
+    margin-left: 100px;
+}
+
+#contestant-bids > div:nth-child(2) {
+    margin-left: 45px;
+}
+
+#contestant-bids > div:nth-child(3),
+#contestant-bids > div:nth-child(4) {
+    margin-left: 40px;
+}
+
+#product-display {
+    width: 330px;
+    height: 173px;
+    margin: 0 auto;
+    color: #000;
+}
+
+#product-display > div {
+    background-color: #fff;
+    width: 355px;
+    height: 134px;
+    margin-top: 39px;
+    margin-left: -25px;
+}
+
+#spin-view,
+#showcase-view {
+    display: none;
+}
+.audience img {
+    border-radius: 100px;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 10px #333;
+}
+.contestant {
+    margin-left:60px;
+    margin-bottom: 40px;
+}
+#contestant-list {
+    list-style: none;
+    padding:0
+}
+
+#contestant1 img {
+    border-radius: 100px;
+    border: 3px solid red;
+    color: #000;
+    height:100px;
+    box-shadow: 0px 0px 15px red;
+    margin-left:40%;
+}
+
+#contestant2 img {
+    border-radius: 100px;
+    border: 3px solid #0026ff;
+    color: #000;
+    height:100px;
+    box-shadow: 0px 0px 15px #0026ff;
+    margin-left: 30%;
+
+}
+#contestant3 img {
+    border-radius: 100px;
+    border: 3px solid #ceff00;
+    color: #000;
+    height:100px;
+    box-shadow: 0px 0px 15px #ceff00;
+    margin-left: 20%;
+}
+#contestant4 img {
+    border-radius: 100px;
+    border: 3px solid #00ff12;
+    color: #000;
+    height:100px;
+    box-shadow: 0px 0px 15px #00ff12;
+    margin-left:10%;
+}
+.col-sm-1.audience, .col-xs-1.audience {
+    width: 6%;
+}
