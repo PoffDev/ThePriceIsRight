@@ -13,13 +13,14 @@ var contestant = {
   ],
 
   add: function(user) {
+
     game.contestant.add(user.id);
     contestant.list.push(user);
 
-    var view = $('#contestant-view');
-    var player = $('<div class="col-xs-12 col-sm-2 player contestant">');
+    var view = $('#contestant-list');
+    var player = $('<li id="contestant' + contestant.list.length +'" class="col-xs-12 col-sm-2 player contestant">');
 
-    player.html('<img src="'+ user.profile.image_32+'"> '+ user.name);
+    player.html('<img src="'+ user.profile.image_72 +'"> '+ user.name);
     player.attr('data-id', user.id);
 
     view.append(player);
@@ -59,6 +60,7 @@ var contestant = {
 
     $.ajax({url: queryURL, method: 'GET'}).done(function(response) {
       var product = response.products[0];
+
       var price = Math.ceil(product.regularPrice);
 
       contestant.price = price;

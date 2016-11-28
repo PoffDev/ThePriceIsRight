@@ -1,0 +1,54 @@
+
+
+body {
+    background: #141821;
+    color: #fff;
+}
+
+.player {
+    height: 60px;
+    width: 120px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 100%;
+}
+#contestant-list {
+    list-style: none;
+    padding:0
+}
+#contestant1 img {
+    border-radius: 100px;
+    border: 3px solid red;
+    color: #000;
+    height:100px;
+    box-shadow: 0px 0px 15px red;
+}
+
+#contestant2 img {
+    border-radius: 100px;
+    border: 3px solid #0026ff;
+    color: #000;
+    height:100px;
+    box-shadow: 0px 0px 15px #0026ff;
+}
+#contestant3 img {
+    border-radius: 100px;
+    border: 3px solid #ceff00;
+    color: #000;
+    height:100px;
+    box-shadow: 0px 0px 15px #ceff00;
+}
+#contestant4 img {
+    border-radius: 100px;
+    border: 3px solid #00ff12;
+    color: #000;
+    height:100px;
+    box-shadow: 0px 0px 15px #00ff12;
+}
+
+.audience img {
+    border-radius: 100px;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 10px #FFF;
+}
