@@ -17,7 +17,6 @@ var app = {
             var amount = $('#bidAmount').val();
             game.contestant.bid(amount);
         });
-        $('#contestant-action').addClass('hide');
 	},
 	event: function(event) {
 		console.log('app', event);
