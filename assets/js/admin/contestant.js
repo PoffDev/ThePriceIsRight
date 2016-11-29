@@ -26,7 +26,9 @@ var contestant = {
     view.append(player);
 
     if (contestant.list.length >= 4) {
-      $('#one-bid-product').removeAttr('disabled');
+      $('#one-bid-product').removeAttr('disabled').on('click', function(){
+        $(this).prop('disabled', true);
+      });
     }
   },
 
