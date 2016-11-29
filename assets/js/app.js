@@ -13,6 +13,11 @@ var app = {
                 audience.add(user);
             }
         });
+        $('#bidButton').on('click', function() {
+            var amount = $('#bidAmount').val();
+            game.contestant.bid(amount);
+        });
+        $('#contestant-action').addClass('hide');
 	},
 	event: function(event) {
 		console.log('app', event);
@@ -37,6 +42,10 @@ var app = {
             }
 
             switch(message.type) {
+                case 'contestant.turn':
+                    contestant.turn(message.user);
+                break;
+
                 case 'contestant.bid':
                     contestant.bid(message.user, message.message);
                 break;
@@ -96,6 +105,13 @@ var contestant = {
             view.append(player);
         }
 	},
+    turn: function(user) {
+        if (user.id === slack.identity.id) {
+            $('#contestant-action').removeClass('hide');
+        } else {
+            $('#contestant-action').addClass('hide');
+        }
+    },
 	// reset all contestants
 	reset: function(users) {
 		var view = $('#contestant-view');
