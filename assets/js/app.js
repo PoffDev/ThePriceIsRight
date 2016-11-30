@@ -16,8 +16,10 @@ var app = {
         $('#bidButton').on('click', function() {
             var amount = $('#bidAmount').val();
             game.contestant.bid(amount);
+
+            $('#contestant-bids').append('<li class="contestant-bid">'+ amount +'</li>');
+
         });
-        $('#contestant-action').addClass('hide');
 	},
 	event: function(event) {
 		console.log('app', event);
@@ -59,6 +61,10 @@ var app = {
                     contestant.reset(message.user);
                 break;
 
+                case 'contestant.won':
+                    contestant.won(message.user);
+                break;
+
                 case 'contestant.product':
                     contestant.product(message.product);
                 break;
@@ -91,8 +97,10 @@ var audience = {
 
 var contestant = {
 	bid: function(user, amount) {
+	    var inputVal = $("#bidAmount").val();
+	    var amt = amount ? amount : inputVal;
 		var view = $('#contestant-bids');
-		var bid = $('<div class="bid">'+ amount +'</div>');
+		var bid = $('<li class="bid">'+ amt +'</li>');
 		view.append(bid);
 	},
 	add: function(user) {
@@ -108,8 +116,16 @@ var contestant = {
     turn: function(user) {
         if (user.id === slack.identity.id) {
             $('#contestant-action').removeClass('hide');
+            for(var i = 0; i < contestant.list.length; i++) {
+                if (user.id === contestant.list[i].id) {
+                    $('#contestant' + i).removeClass('bounce');
+                    $('#contestant' + (i+1)).addClass('bounce');
+                }
+            }
+
         } else {
             $('#contestant-action').addClass('hide');
+
         }
     },
 	// reset all contestants
@@ -122,6 +138,15 @@ var contestant = {
 		$('.modal-title').empty();
 		$('.modal-body').empty();
 	},
+    won: function(user){
+	  for (var i=0;i < contestant.list.length;i++) {
+	      var pos = i + 1;
+	      $('#contestant' + pos).removeClass('bounce');
+	      if (user.id === contestant.list[i].id) {
+	          $('#contestant' + pos + '> img').addClass('winner');
+          }
+      }
+    },
 	product: function(product) {
 		var view = $('#product-display > div');
 		var modalTitle = $('.modal-title');

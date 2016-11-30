@@ -82,9 +82,10 @@ var contestant = {
 
   bid: function(userId, amount) {
     var view = $('#contestant-view');
-    amount = parseInt(amount);
+    amount = amount ? parseInt(amount) : $('#bidAmount').val();
+
     var player = view.find('div[data-id="'+ userId +'"]');
-    player.append('<div class="contestant-bid">'+ amount +'</div>');
+    player.append('<li class="contestant-bid">'+ amount +'</li>');
 
     contestant.bids.push({
       user: userId,
