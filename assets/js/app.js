@@ -143,7 +143,7 @@ var contestant = {
 	      var pos = i + 1;
 	      $('#contestant' + pos).removeClass('bounce');
 	      if (user.id === contestant.list[i].id) {
-	          $('#contestant' + pos).addClass('winner');
+	          $('#contestant' + pos + '> img').addClass('winner');
           }
       }
     },
