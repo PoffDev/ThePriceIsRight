@@ -116,16 +116,15 @@ var contestant = {
     turn: function(user) {
         if (user.id === slack.identity.id) {
             $('#contestant-action').removeClass('hide');
-            for(var i = 0; i < contestant.list.length; i++) {
-                if (user.id === contestant.list[i].id) {
-                    $('#contestant' + i).removeClass('bounce');
-                    $('#contestant' + (i+1)).addClass('bounce');
-                }
-            }
-
         } else {
             $('#contestant-action').addClass('hide');
-
+        }
+        for(var i = 1; i < contestant.list.length; i++) {
+            if (user.id === contestant.list[i-1].id) {
+                $('#contestant' + i).addClass('bounce');
+            } else {
+                $('#contestant' + i).removeClass('bounce');
+            }
         }
     },
 	// reset all contestants
