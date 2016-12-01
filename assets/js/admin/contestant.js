@@ -116,7 +116,7 @@ var contestant = {
         }
       }
 
-      game.contestant.won(winner.user, winner.bid);
+      game.contestant.won(winner.user, winner.amount, contestant.price);
 
       return;
     }

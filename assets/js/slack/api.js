@@ -37,6 +37,7 @@ slack.api = {
 		return slack.api.request(url, {
 			client_id: slack.client_id,
 			client_secret: slack.client_secret,
+			redirect_uri: slack.redirect_uri,
 			code: code
 		});
 	},
