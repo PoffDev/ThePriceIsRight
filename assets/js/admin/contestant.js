@@ -121,6 +121,10 @@ var contestant = {
       return;
     }
 
+    // switch turns if less than 4 bids
+    var id = contestant.list[++contestant.turn].id;
+    game.contestant.turn(id);
+
   },
 
   all: function() {
