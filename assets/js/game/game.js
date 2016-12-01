@@ -42,11 +42,12 @@ var game = {
 			})
 		},
 
-		won: function(user, bid) {
+		won: function(user, bid, price) {
 			game.send({
 				type: 'contestant.won',
 				user: user,
-				message: bid
+				message: bid,
+				price: price
 			});
 		},
 
