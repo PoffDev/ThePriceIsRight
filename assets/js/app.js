@@ -16,11 +16,8 @@ var app = {
         $('#bidButton').on('click', function() {
             var amount = $('#bidAmount').val();
             game.contestant.bid(amount);
-            for (var i=1;i <= contestant.list.length;i++) {
-                if(contestant.list[i-1].id === slack.identity.id) {
-                    $('#contestant'+ i +'-bid').html(amount);
-                }
-            }
+            $('#contestant-bids > li[data-id="'+ slack.identity.id +'"]').html(amount);
+
         });
 	},
 	event: function(event) {
@@ -100,16 +97,20 @@ var audience = {
 
 var contestant = {
 	bid: function(user, amount) {
-        // var amt,
-        // inputVal = $("#bidAmount").val();
-        // if (amount) {
-	     //    amt = amount;
-        // } else {
-	     //    amt = inputVal;
-        // }
-		// var view = $('#contestant-bids');
-		// var bid = $('<li class="bid">'+ amt +'</li>');
-		// view.append(bid);
+        var amt,
+        inputVal = $("#bidAmount").val();
+        if (amount) {
+	        amt = amount;
+        } else {
+	        amt = inputVal;
+        }
+		var view = $('#contestant-bids');
+		var bid = $('<li class="bid">'+ amt +'</li>');
+        var amount = $('#bidAmount').val();
+        game.contestant.bid(amount);
+        $('#contestant-bids > li[data-id="'+ user.id +'"]').html(amount);
+
+		view.append(bid);
 	},
 	add: function(user) {
 	    if (contestant.list.length <= 4) {
@@ -121,7 +122,7 @@ var contestant = {
             player.html('<img src="'+ user.profile.image_72 +'"> ');
             player.attr('data-id', user.id);
             view.append(player);
-            bids.append('<li id="contestant'+ contestant.list.length +'-bid" class="bid">0</div>');
+            bids.append('<li id="contestant'+ contestant.list.length +'-bid" data-id="'+ user.id +'" class="bid">0</div>');
 
             if (contestant.list[3].id === user.id) {
                 bids.removeClass('hide');
@@ -153,6 +154,7 @@ var contestant = {
 		$('.modal-title').empty();
 		$('.modal-body').empty();
         $('#contestant-action').addClass('hide');
+        $('#contestant-bids').addClass('hide');
 	},
     won: function(user){
 	  for (var i=0;i < contestant.list.length;i++) {
