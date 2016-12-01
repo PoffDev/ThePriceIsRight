@@ -104,13 +104,9 @@ var contestant = {
         } else {
 	        amt = inputVal;
         }
-		var view = $('#contestant-bids');
-		var bid = $('<li class="bid">'+ amt +'</li>');
-        var amount = $('#bidAmount').val();
-        game.contestant.bid(amount);
-        $('#contestant-bids > li[data-id="'+ user.id +'"]').html(amount);
+        game.contestant.bid(amt);
+        $('#contestant-bids > li[data-id="'+ user.id +'"]').html(amt);
 
-		view.append(bid);
 	},
 	add: function(user) {
 	    if (contestant.list.length <= 4) {
