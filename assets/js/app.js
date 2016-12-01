@@ -152,6 +152,7 @@ var contestant = {
 		$('#product-display > div').empty();
 		$('.modal-title').empty();
 		$('.modal-body').empty();
+        $('#contestant-action').addClass('hide');
 	},
     won: function(user){
 	  for (var i=0;i < contestant.list.length;i++) {
