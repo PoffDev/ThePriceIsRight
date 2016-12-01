@@ -100,16 +100,16 @@ var audience = {
 
 var contestant = {
 	bid: function(user, amount) {
-	    var amt,
-	    inputVal = $("#bidAmount").val();
-	    if (amount) {
-	        amt = amount;
-        } else {
-	        amt = inputVal;
-        }
-		var view = $('#contestant-bids');
-		var bid = $('<li class="bid">'+ amt +'</li>');
-		view.append(bid);
+        // var amt,
+        // inputVal = $("#bidAmount").val();
+        // if (amount) {
+	     //    amt = amount;
+        // } else {
+	     //    amt = inputVal;
+        // }
+		// var view = $('#contestant-bids');
+		// var bid = $('<li class="bid">'+ amt +'</li>');
+		// view.append(bid);
 	},
 	add: function(user) {
 	    if (contestant.list.length <= 4) {
