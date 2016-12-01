@@ -16,8 +16,6 @@ var app = {
         $('#bidButton').on('click', function() {
             var amount = $('#bidAmount').val();
             game.contestant.bid(amount);
-            $('#contestant-bids > li[data-id="'+ slack.identity.id +'"]').html(amount);
-
         });
 	},
 	event: function(event) {
@@ -97,16 +95,7 @@ var audience = {
 
 var contestant = {
 	bid: function(user, amount) {
-        var amt,
-        inputVal = $("#bidAmount").val();
-        if (amount) {
-	        amt = amount;
-        } else {
-	        amt = inputVal;
-        }
-        game.contestant.bid(amt);
-        $('#contestant-bids > li[data-id="'+ user.id +'"]').html(amt);
-
+        $('#contestant-bids > li[data-id="'+ user.id +'"]').html(amount);
 	},
 	add: function(user) {
 	    if (contestant.list.length <= 4) {
@@ -120,10 +109,9 @@ var contestant = {
             view.append(player);
             bids.append('<li id="contestant'+ contestant.list.length +'-bid" data-id="'+ user.id +'" class="bid">0</div>');
 
-            if (contestant.list[3].id === user.id) {
+            if (contestant.list.length === 3) {
                 bids.removeClass('hide');
             }
-
         }
 	},
     turn: function(user) {
