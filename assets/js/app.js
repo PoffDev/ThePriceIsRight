@@ -60,6 +60,7 @@ var app = {
                 break;
 
                 case 'contestant.reset':
+                    contestant.list = [];
                     contestant.reset(message.user);
                 break;
 

@@ -121,25 +121,6 @@ var contestant = {
       return;
     }
 
-    // can't bid the same as another player
-    var duplicate = false;
-    for (var i = contestant.bids.length - 1; i >= 0; i--) {
-      var bid = contestant.bids[i];
-      if (userId !== bid.user && amount == bid.amount) {
-        duplicate = true;
-      }
-    }
-
-    if (duplicate) {
-      contestant.bids.pop();
-      var id = contestant.list[contestant.turn].id;
-      game.contestant.turn(id, "Your bid cannot be the same amount as another player's");
-    } else {
-      // switch turns
-      var id = contestant.list[++contestant.turn].id;
-      game.contestant.turn(id);
-    }
-
   },
 
   all: function() {
