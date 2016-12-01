@@ -1,7 +1,7 @@
 var slack = {
 	client_id: '75325387572.103198794929',
 	client_secret: 'baf2d9e0bb767f588feebcf2dd6dab48',
-	redirect_uri: 'https://salty-island-93164.herokuapp.com//game.html',
+	redirect_uri: 'https://salty-island-93164.herokuapp.com/game.html',
 	// redirect_uri: 'http://localhost/game.html',
 
 	team: 'T279KBDGU',
