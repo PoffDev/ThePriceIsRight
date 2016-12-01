@@ -82,7 +82,6 @@ var contestant = {
 
   bid: function(userId, amount) {
     var view = $('#contestant-view');
-    amount = amount ? parseInt(amount) : $('#bidAmount').val();
 
     var player = view.find('div[data-id="'+ userId +'"]');
     player.append('<li class="contestant-bid">'+ amount +'</li>');
@@ -91,6 +90,8 @@ var contestant = {
       user: userId,
       amount: amount
     });
+
+    game.contestant.bid(amount);
 
     // all contestants have bid
     if (contestant.bids.length >= 4) {
