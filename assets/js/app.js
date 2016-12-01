@@ -16,9 +16,11 @@ var app = {
         $('#bidButton').on('click', function() {
             var amount = $('#bidAmount').val();
             game.contestant.bid(amount);
-
-            $('#contestant-bids').append('<li class="contestant-bid">'+ amount +'</li>');
-
+            for (var i=1;i <= contestant.list.length;i++) {
+                if(contestant.list[i-1].id === slack.identity.id) {
+                    $('#contestant'+ i +'-bid').html(amount);
+                }
+            }
         });
 	},
 	event: function(event) {
@@ -97,8 +99,13 @@ var audience = {
 
 var contestant = {
 	bid: function(user, amount) {
-	    var inputVal = $("#bidAmount").val();
-	    var amt = amount ? amount : inputVal;
+	    var amt,
+	    inputVal = $("#bidAmount").val();
+	    if (amount) {
+	        amt = amount;
+        } else {
+	        amt = inputVal;
+        }
 		var view = $('#contestant-bids');
 		var bid = $('<li class="bid">'+ amt +'</li>');
 		view.append(bid);
@@ -107,12 +114,18 @@ var contestant = {
 	    if (contestant.list.length <= 4) {
             var view = $('#contestant-list');
             var bids = $('#contestant-bids');
+
             var player = $('<li id="contestant'+ contestant.list.length +'" class="col-xs-2 col-sm-2 player contestant">');
 
             player.html('<img src="'+ user.profile.image_72 +'"> ');
             player.attr('data-id', user.id);
             view.append(player);
             bids.append('<li id="contestant'+ contestant.list.length +'-bid" class="bid">0</div>');
+
+            if (contestant.list[3].id === user.id) {
+                bids.removeClass('hide');
+            }
+
         }
 	},
     turn: function(user) {
