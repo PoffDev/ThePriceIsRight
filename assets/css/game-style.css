@@ -108,13 +108,13 @@ body {
 }
 
 #contestant1 img {
-    border-radius: 100px;
-    border: 3px solid red;
-    color: #000;
-    height:100px;
-    box-shadow: 0px 0px 15px red;
-    margin-left:40%;
-}
+     border-radius: 100px;
+     border: 3px solid red;
+     color: #000;
+     height:100px;
+     box-shadow: 0px 0px 15px red;
+     margin-left:40%;
+ }
 
 #contestant2 img {
     border-radius: 100px;
@@ -125,6 +125,7 @@ body {
     margin-left: 30%;
 
 }
+
 #contestant3 img {
     border-radius: 100px;
     border: 3px solid #ceff00;
@@ -133,6 +134,7 @@ body {
     box-shadow: 0px 0px 15px #ceff00;
     margin-left: 20%;
 }
+
 #contestant4 img {
     border-radius: 100px;
     border: 3px solid #00ff12;
@@ -141,9 +143,41 @@ body {
     box-shadow: 0px 0px 15px #00ff12;
     margin-left:10%;
 }
+#contestant1-bid {
+    width: 28%
+}
+
+#contestant2-bid {
+    width:24%
+}
+
+#contestant3-bid {
+    width: 24%;
+}
+
+#contestant4-bid {
+
+}
+
 .col-sm-1.audience, .col-xs-1.audience {
     width: 6%;
 }
+
+.bids {
+    list-style: none;
+    display: table;
+    font-size: 80px;
+    width: 90%;
+    font-size: 80px;
+    margin-top: -70px;
+}
+
+.bid {
+    display:table-cell;
+    width: 25%;
+    text-align: right;
+}
+
 .bounce {
     position: relative;
     animation: bounce 2s infinite;
