@@ -91,8 +91,6 @@ var contestant = {
       amount: amount
     });
 
-    game.contestant.bid(amount);
-
     // all contestants have bid
     if (contestant.bids.length >= 4) {
       var winner = {};
