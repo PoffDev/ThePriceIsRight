@@ -96,7 +96,6 @@ var audience = {
 
 var contestant = {
 	bid: function(user, amount) {
-        user = slack.users[user];
         $('#contestant-bids > li[data-id="'+ user.id +'"]').html(amount);
 	},
 	add: function(user) {
