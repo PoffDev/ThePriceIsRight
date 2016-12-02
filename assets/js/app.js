@@ -16,7 +16,8 @@ var app = {
         $('#bidButton').on('click', function() {
             var amount = $('#bidAmount').val();
             game.contestant.bid(amount);
-            contestant.bid(slack.identity.id, amount);
+            var user = slack.users[slack.identity.id];
+            contestant.bid(user, amount);
         });
 	},
 	event: function(event) {
