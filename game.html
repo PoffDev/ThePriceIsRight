@@ -2,100 +2,95 @@
 <html>
 <head>
 
-	<script src="assets/js/jquery-3.1.1.min.js"></script>
-	<script type="text/javascript" src="assets/js/jquery.qs.js"></script>
-	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="assets/js/slack/slack.js"></script>
-	<script type="text/javascript" src="assets/js/slack/connection.js"></script>
-	<script type="text/javascript" src="assets/js/slack/api.js"></script>
-	<script type="text/javascript" src="assets/js/game/game.js"></script>
-	<script type="text/javascript" src="assets/js/app.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.qs.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/slack/slack.js"></script>
+    <script type="text/javascript" src="assets/js/slack/connection.js"></script>
+    <script type="text/javascript" src="assets/js/slack/api.js"></script>
+    <script type="text/javascript" src="assets/js/game/game.js"></script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
 
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
-	<link rel="stylesheet" href="assets/css/game-style.css">
-
-	<style type="text/css">
-
-	</style>
+    <link rel="stylesheet" href="assets/css/game-style.css">
 </head>
 
 <body>
-	<div class="container">
+<div class="container">
 
-		<div id="audience">
-			<!-- product display -->
-			<div class="row" id="product-display">
-				<div class="col-xs-12 col-sm-12">
-				</div>
-			</div>
+    <div id="audience">
+        <!-- product display -->
+        <div class="row" id="product-display">
+            <div class="col-xs-12 col-sm-12">
+            </div>
+        </div>
 
-			<!-- Modal -->
-			<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="ProductModal">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title" id="productTitle"></h4>
-						</div>
-						<div class="modal-body">
+        <!-- Modal -->
+        <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="ProductModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="productTitle"></h4>
+                    </div>
+                    <div class="modal-body">
 
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-			<!-- audience view -->
-			<div class="row" id="audience-view">
-			</div>
+        <!-- audience view -->
+        <div class="row" id="audience-view">
+        </div>
 
-			<!-- contestant view -->
-			<div class="row" id="contestant-view">
-				<ul id="contestant-list"></ul>
-				<ul class="bids col-sm-12 hide" id="contestant-bids"></ul>
-			</div>
+        <!-- contestant view -->
+        <div class="row" id="contestant-view">
+            <ul id="contestant-list"></ul>
+            <ul class="bids col-sm-12 hide" id="contestant-bids"></ul>
+        </div>
 
-		</div>
-		<div class="row" id="audience-controls">
-			<div class="col-xs-6 hide" id="yell-action">
-				<h2>Yell A Bid!</h2>
-				<div class="input-group">
-					<input id="yellMessage" type="text" class="form-control">
-					<span class="input-group-btn">
+    </div>
+    <div class="row" id="audience-controls">
+        <div class="col-xs-6 hide" id="yell-action">
+            <h2>Yell A Bid!</h2>
+            <div class="input-group">
+                <input id="yellMessage" type="text" class="form-control">
+                <span class="input-group-btn">
 		        <button id="yellButton" class="btn btn-primary" type="button">Yell!</button>
 		      </span>
-				</div><!-- /input-group -->
-			</div>
-		<div class="row" id="contestant-controls">
-			<div class="col-xs-6 hide" id="contestant-action">
-				<h2>Contestants Row Controls</h2>
-				<div class="input-group">
-		      <input id="bidAmount" type="text" class="form-control" placeholder="1.00">
-		      <span class="input-group-btn">
-		        <button id="bidButton" class="btn btn-primary" type="button">Bid!</button>
-		      </span>
-		    </div><!-- /input-group -->
-	    </div>
+            </div><!-- /input-group -->
+        </div>
+    </div>
+    <div class="row" id="contestant-controls">
+        <div class="col-xs-6 hide" id="contestant-action">
+            <h2>Contestants Row Controls</h2>
+            <form id="contestant-row-bid">
+                <div class="input-group">
+                    <input id="bidAmount" type="number" min="1" max="9999" class="form-control" required placeholder="1.00">
+                    <span class="input-group-btn">
+		                <button id="bidButton" class="btn btn-primary" type="submit">Place your bid!</button>
+		            </span>
+                </div><!-- /input-group -->
+            </form>
+        </div>
+    </div>
 
-	    <div class="col-xs-6 hide">
-	    	<h2>Audience Chat</h2>
-	    </div>
-		</div>
+    <!-- spin view -->
+    <div class="row" id="spin-view"></div>
 
-		<!-- spin view -->
-		<div class="row" id="spin-view"></div>
+    <!-- showcase view -->
+    <div class="row" id="showcase-view"></div>
 
-		<!-- showcase view -->
-		<div class="row" id="showcase-view"></div>
-
-	</div>
+</div>
 </body>
-
 
 
 </html>

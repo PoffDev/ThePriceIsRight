@@ -13,17 +13,21 @@ var app = {
                 audience.add(user);
             }
         });
-        $('#bidButton').on('click', function() {
+        $('#contestant-row-bid').submit(function(event) {
+            event.stopPropagation();
             var amount = $('#bidAmount').val();
             game.contestant.bid(amount);
             var user = slack.users[slack.identity.id];
             contestant.bid(user, amount);
+            return false;
         });
-        $('#yellButton').on('click', function() {
+        $('#yellButton').on('click', function(event) {
+            event.stopPropagation();
             var message = $('#yellMessage').val();
             game.audience.yell(message);
             var user = slack.users[slack.identity.id];
             audience.yell(user, message);
+            return false;
         });
 	},
 	event: function(event) {
@@ -91,7 +95,7 @@ var audience = {
         var view = $('#audience-view');
         var player = $('<div class="col-xs-1 col-sm-1 player audience">');
         player.html('<img src="'+ user.profile.image_48 +'">');
-        player.attr('data-id', user.id);
+        player.attr('data-', user.id);
         view.append(player);
 	},
     remove: function(user) {
@@ -140,11 +144,11 @@ var contestant = {
             view.append(player);
             bids.append('<li id="contestant'+ contestant.list.length +'-bid" data-id="'+ user.id +'" class="bid">0</div>');
 
-            if (contestant.list.length === 3) {
+            if (contestant.list.length === 4) {
                 bids.removeClass('hide');
-
-                yell.removeClass('hide');
-
+                if (user.id !== slack.identity.id) {
+                    yell.removeClass('hide');
+                }
             }
         }
 	},
