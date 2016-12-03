@@ -88,6 +88,9 @@ var audience = {
     remove: function(user) {
         var view = $('#audience-view');
         view.find('div[data-id="'+ user.id +'"]').remove();
+        (window).on('unload', function(){
+            slack.api.part;
+        })
     }
 };
 
