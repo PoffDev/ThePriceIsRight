@@ -111,7 +111,7 @@ var contestant = {
             view.append(player);
             bids.append('<li id="contestant'+ contestant.list.length +'-bid" data-id="'+ user.id +'" class="bid">0</div>');
 
-            if (contestant.list.length === 3) {
+            if (contestant.list.length === 4) {
                 bids.removeClass('hide');
             }
         }
