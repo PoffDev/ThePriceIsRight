@@ -78,6 +78,7 @@ var app = {
                 case 'contestant.won':
                     contestant.won(message.user);
                 break;
+
                 case 'contestant.product':
                     contestant.product(message.product);
                 break;
@@ -92,10 +93,10 @@ var app = {
 
 var audience = {
 	add: function(user) {
-        var view = $('#audience-view');
+		var view = $('#audience-view');
         var player = $('<div class="col-xs-1 col-sm-1 player audience">');
         player.html('<img src="'+ user.profile.image_48 +'">');
-        player.attr('data-', user.id);
+        player.attr('data-id', user.id);
         view.append(player);
 	},
     remove: function(user) {
