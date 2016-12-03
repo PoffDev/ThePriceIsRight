@@ -19,6 +19,12 @@ var app = {
             var user = slack.users[slack.identity.id];
             contestant.bid(user, amount);
         });
+        $('#yellButton').on('click', function() {
+            var message = $('#yellMessage').val();
+            game.audience.yell(message);
+            var user = slack.users[slack.identity.id];
+            audience.yell(user, message);
+        });
 	},
 	event: function(event) {
 		console.log('app', event);
@@ -43,6 +49,10 @@ var app = {
             }
 
             switch(message.type) {
+                case 'audience.yell':
+                    audience.yell(message.user, message.message)
+                break;
+
                 case 'contestant.turn':
                     contestant.turn(message.user);
                 break;
@@ -64,7 +74,6 @@ var app = {
                 case 'contestant.won':
                     contestant.won(message.user);
                 break;
-
                 case 'contestant.product':
                     contestant.product(message.product);
                 break;
@@ -79,7 +88,7 @@ var app = {
 
 var audience = {
 	add: function(user) {
-		var view = $('#audience-view');
+        var view = $('#audience-view');
         var player = $('<div class="col-xs-1 col-sm-1 player audience">');
         player.html('<img src="'+ user.profile.image_48 +'">');
         player.attr('data-id', user.id);
@@ -88,6 +97,25 @@ var audience = {
     remove: function(user) {
         var view = $('#audience-view');
         view.find('div[data-id="'+ user.id +'"]').remove();
+    },
+    yell: function(user, message) {
+        var view = $('#audience-view');
+        var member = view.find('div[data-id="'+ user.id +'"]');
+        var messagePop = member.find('div[data-pop="'+ user.id +'"]')
+        if(messagePop.length !== 0) {
+            messagePop.html(message);
+            messagePop.removeClass('hide');
+        } else {
+            messagePop = $('<div class="message-pop" data-pop="'+ user.id +'">'+ message +'</div>');
+            member.prepend(messagePop);
+        }
+
+        setTimeout(function() {
+            messagePop.html('');
+            messagePop.addClass('hide');
+        }, 2000);
+
+
     }
 };
 
@@ -103,6 +131,7 @@ var contestant = {
 	    if (contestant.list.length <= 4) {
             var view = $('#contestant-list');
             var bids = $('#contestant-bids');
+            var yell = $('#yell-action');
 
             var player = $('<li id="contestant'+ contestant.list.length +'" class="col-xs-2 col-sm-2 player contestant">');
 
@@ -113,6 +142,9 @@ var contestant = {
 
             if (contestant.list.length === 3) {
                 bids.removeClass('hide');
+
+                yell.removeClass('hide');
+
             }
         }
 	},
@@ -148,6 +180,7 @@ var contestant = {
 	      $('#contestant' + pos).removeClass('bounce');
 	      if (user.id === contestant.list[i].id) {
 	          $('#contestant' + pos + '> img').addClass('winner');
+	          $('#yell-action').addClass('hide');
           }
       }
     },
