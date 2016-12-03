@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <script src="assets/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="assets/js/jquery.qs.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/js/slack/slack.js"></script>
@@ -15,10 +15,6 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="assets/css/game-style.css">
-
-    <style type="text/css">
-
-    </style>
 </head>
 
 <body>
@@ -66,11 +62,11 @@
     <div class="row" id="contestant-controls">
         <div class="col-xs-6 hide" id="contestant-action">
             <h2>Contestants Row Controls</h2>
-            <form>
+            <form id="contestant-row-bid">
                 <div class="input-group">
-                    <input id="bidAmount" type="number" min="1" class="form-control" placeholder="1.00">
+                    <input id="bidAmount" type="number" min="1" max="9999" class="form-control" required placeholder="1.00">
                     <span class="input-group-btn">
-		                <button id="bidButton" class="btn btn-primary" type="button">Place your bid!</button>
+		                <button id="bidButton" class="btn btn-primary" type="submit">Place your bid!</button>
 		            </span>
                 </div><!-- /input-group -->
             </form>

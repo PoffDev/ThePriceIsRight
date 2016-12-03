@@ -13,11 +13,13 @@ var app = {
                 audience.add(user);
             }
         });
-        $('#bidButton').on('click', function() {
+        $('#contestant-row-bid').submit(function(event) {
+            event.stopPropagation();
             var amount = $('#bidAmount').val();
             game.contestant.bid(amount);
             var user = slack.users[slack.identity.id];
             contestant.bid(user, amount);
+            return false;
         });
 	},
 	event: function(event) {
