@@ -115,6 +115,12 @@ var contestant = {
         }
       }
 
+      //if all over bid
+      if (contestant.bids[i] > contestant.price){
+        bid()
+        return;
+      }
+
       game.contestant.won(winner.user, winner.amount, contestant.price);
 
       return;
